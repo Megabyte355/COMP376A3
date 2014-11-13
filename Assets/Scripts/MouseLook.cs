@@ -41,7 +41,9 @@ public class MouseLook : MonoBehaviour
     {
         float axisX = Input.GetAxis("Horizontal");
         float axisZ = Input.GetAxis("Vertical");
-        Vector3 translation = new Vector3(axisX, 0, axisZ);
+        float axisY = Input.GetAxis("Lateral");
+
+        Vector3 translation = new Vector3(axisX, axisY, axisZ);
         transform.Translate(translation * moveSpeed * Time.deltaTime);
     }
 }
