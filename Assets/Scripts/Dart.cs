@@ -5,8 +5,9 @@ public class Dart : MonoBehaviour
 {
     [SerializeField]
     float moveSpeed;
-    void Update()
+
+    void Start()
     {
-        transform.Translate(transform.forward * moveSpeed * Time.deltaTime, Space.World);
+        rigidbody.velocity = transform.forward * moveSpeed;
     }
 }
