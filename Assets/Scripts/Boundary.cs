@@ -15,7 +15,7 @@ public class Boundary : MonoBehaviour
 
     void OnTriggerExit(Collider obj)
     {
-        if(thingsThatWrap.Contains(obj.name))
+        if(thingsThatWrap.Contains(obj.tag))
         {
             Wrap(obj.gameObject);
         }
@@ -23,7 +23,15 @@ public class Boundary : MonoBehaviour
 
     void Wrap(GameObject obj)
     {
-        Vector3 translationVector = boxCollider.center - obj.transform.position;
-        obj.transform.Translate(2 * translationVector, Space.World);
+        Vector3 translationVector = 2 * (boxCollider.center - obj.transform.position);
+
+        if(obj.tag == Tags.Anchor)
+        {
+            obj.GetComponent<Anchor>().Wrap(translationVector, Space.World);
+        }
+        else
+        {
+            obj.transform.Translate(translationVector, Space.World);
+        }
     }
 }
