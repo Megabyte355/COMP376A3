@@ -4,23 +4,22 @@ using System.Collections.Generic;
 
 public class Anchor : MonoBehaviour
 {
+    public Vector3 direction;
+    public float speed;
+    public float minDistance;
+    public float maxDistance;
     [SerializeField]
-    Vector3 direction;
-    [SerializeField]
-    float speed;
-
-    [SerializeField]
-    float minDistance;
-    [SerializeField]
-    float maxDistance;
+    float speedIncrement;
     [SerializeField]
     bool randomizeDirection;
     [SerializeField]
-    GameObject balloonPrefab;
-    [SerializeField]
     List<Balloon> anchoredBalloons = new List<Balloon>();
 
+    [SerializeField]
+    GameObject balloonPrefab;
+
     WindEffect wind;
+
     void Start()
     {
         wind = GameObject.FindGameObjectWithTag("Wind").GetComponent<WindEffect>();
@@ -70,12 +69,67 @@ public class Anchor : MonoBehaviour
         anchoredBalloons.Remove(b);
     }
 
-    public void SplitBalloons(Vector3 collisionDirection)
+    public void ClearBalloonList()
     {
-        // TODO: Split balloons
-        // TODO: Speed up
-        // TODO: Award player points
+        anchoredBalloons.Clear();
     }
+
+    public int GetBalloonCount()
+    {
+        return anchoredBalloons.Count;
+    }
+
+    public List<Balloon> GetAnchoredBalloons()
+    {
+        return anchoredBalloons;
+    }
+
+    public void SpeedUp()
+    {
+        speed += speedIncrement;
+    }
+    //public void SplitBalloons(Balloon targetBalloon, Vector3 collisionDirection)
+    //{
+
+    //    if (anchoredBalloons.Count == 0)
+    //    {
+    //        Destroy(this.gameObject);
+    //        return;
+    //    }
+        
+    //    // Destroy target balloon
+    //    anchoredBalloons.Remove(targetBalloon);
+    //    Destroy(targetBalloon.gameObject);
+
+    //    // Split balloons
+    //    GameObject freshAnchorObject = Instantiate(gameObject, transform.position, Quaternion.identity) as GameObject;
+    //    Anchor freshAnchor = freshAnchorObject.GetComponent<Anchor>();
+    //    freshAnchor.ClearBalloonList();
+
+    //    // Transfer half of the balloons
+    //    List<Balloon> transferList = new List<Balloon>(anchoredBalloons);
+    //    int half = anchoredBalloons.Count / 2;
+    //    for (int i = 0; i < half; i++)
+    //    {
+    //        Balloon current = transferList[i];
+    //        anchoredBalloons.Remove(current);
+    //        freshAnchor.AddBalloon(current);
+    //        current.GetComponent<SpringJoint>().connectedBody = freshAnchor.rigidbody;
+    //    }
+    //    transferList.Clear();
+
+    //    freshAnchor.direction = new Vector3(0, -1, 0);
+
+
+    //    if(freshAnchor.GetBalloonCount() == 0)
+    //    {
+    //        Destroy(freshAnchor.gameObject);
+    //    }
+
+
+    //    // TODO: Speed up
+    //    // TODO: Award player points
+    //}
 
     public void Wrap(Vector3 translationVector, Space space)
     {

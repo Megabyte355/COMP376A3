@@ -20,11 +20,14 @@ public class GameStarter : MonoBehaviour
         while (anchorsInstantiated < numberOfAnchors)
         {
             BoxCollider boxCollider = boundary.GetComponent<BoxCollider>();
+            
+            // Generate random position inside the Boundary Box
             float posX = Random.Range(-boxCollider.size.x/2 * 0.85f, boxCollider.size.x/2 * 0.85f);
             float posY = Random.Range(-boxCollider.size.y/2 * 0.85f, boxCollider.size.y/2 * 0.85f);
             float posZ = Random.Range(-boxCollider.size.z/2 * 0.85f, boxCollider.size.z/2 * 0.85f);
             Vector3 position = boundary.transform.position + new Vector3(posX, posY, posZ);
-            Debug.Log(position);
+            
+            // Instantiate anchor and balloons
             GameObject freshAnchorObject = Instantiate(anchorPrefab, position, Quaternion.identity) as GameObject;
             Anchor freshAnchor = freshAnchorObject.GetComponent<Anchor>();
             freshAnchor.InitializeBalloons(Random.Range(minBalloonsPerAnchor, maxBalloonsPerAnchor));

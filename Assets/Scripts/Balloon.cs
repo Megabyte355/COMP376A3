@@ -11,11 +11,13 @@ public class Balloon : MonoBehaviour
     WindEffect wind;
     SpringJoint joint;
     Anchor anchor;
+    BalloonSplitter splitter;
 
     bool customInstantiation = false;
     void Start()
     {
-        wind = GameObject.FindGameObjectWithTag("Wind").GetComponent<WindEffect>();
+        wind = GameObject.FindGameObjectWithTag(Tags.Wind).GetComponent<WindEffect>();
+        splitter = GameObject.FindGameObjectWithTag(Tags.BalloonSplitter).GetComponent<BalloonSplitter>();
         
         if(!customInstantiation)
         {
@@ -46,10 +48,8 @@ public class Balloon : MonoBehaviour
     {
         if(col.gameObject.tag == Tags.Dart)
         {
-            anchor.RemoveBalloon(this);
-            anchor.SplitBalloons(col.rigidbody.velocity);
+            splitter.SplitBalloons(this, col.rigidbody.velocity);
             Destroy(col.gameObject);
-            Destroy(this.gameObject);
         }
     }
 }

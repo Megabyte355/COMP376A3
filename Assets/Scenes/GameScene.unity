@@ -74,6 +74,47 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &153440614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 153440616}
+  - 114: {fileID: 153440615}
+  m_Layer: 0
+  m_Name: BalloonSplitter
+  m_TagString: BalloonSplitter
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &153440615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 153440614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef7d2a3edb9d47c4dab2a1cd77f46a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchorPrefab: {fileID: 100002, guid: 96961a1a1c4a4294a82f310cca7fa673, type: 2}
+  maxDegreeChange: 75
+--- !u!4 &153440616
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 153440614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 277377644}
+  m_RootOrder: 4
 --- !u!1 &182128181
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +273,7 @@ Transform:
   - {fileID: 1520790350}
   - {fileID: 1181121400}
   - {fileID: 1550110742}
+  - {fileID: 153440616}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!1 &944479873
@@ -408,7 +450,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 50, z: 50}
+  m_Size: {x: 30, y: 30, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1550110740
 GameObject:
@@ -437,9 +479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0362993ed03489448a3abd968698d762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfAnchors: 5
+  numberOfAnchors: 1
   minBalloonsPerAnchor: 10
-  maxBalloonsPerAnchor: 20
+  maxBalloonsPerAnchor: 10
   anchorPrefab: {fileID: 100002, guid: 96961a1a1c4a4294a82f310cca7fa673, type: 2}
   boundary: {fileID: 1520790351}
 --- !u!4 &1550110742

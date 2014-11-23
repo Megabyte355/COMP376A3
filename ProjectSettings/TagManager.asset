@@ -8,6 +8,7 @@ TagManager:
   - Anchor
   - Dart
   - Boundary
+  - BalloonSplitter
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   User Layer 9: HotAirBalloon
   User Layer 10: Dart
   User Layer 11: WaterBalloon
-  User Layer 12: 
+  User Layer 12: Anchor
   User Layer 13: 
   User Layer 14: 
   User Layer 15: 
