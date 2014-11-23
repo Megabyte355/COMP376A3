@@ -486,7 +486,7 @@ GameObject:
   - 4: {fileID: 1520790350}
   - 65: {fileID: 1520790352}
   - 114: {fileID: 1520790351}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CubeBoundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}
