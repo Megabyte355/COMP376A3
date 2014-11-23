@@ -70,8 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   speed: 1
-  minDistance: 1.5
-  maxDistance: 3
+  minDistance: .5
+  maxDistance: 2
   speedIncrement: 1
   randomizeDirection: 1
   anchoredBalloons: []

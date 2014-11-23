@@ -28,6 +28,9 @@ public class BalloonSplitter : MonoBehaviour
 
             // Speed up
             anchor.SpeedUp();
+
+            // Disable line renderer - It looks weird!
+            anchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
         }
         else
         {
@@ -41,9 +44,11 @@ public class BalloonSplitter : MonoBehaviour
             // Transfer half of the balloons
             List<Balloon> anchoredBalloons = anchor.GetAnchoredBalloons();
             int half = anchoredBalloons.Count / 2;
+            Color newColor = new Color(Random.value, Random.value, Random.value, 1f);
             for (int i = anchoredBalloons.Count - 1; i >= half; i--)
             {
                 Balloon current = anchoredBalloons[i];
+                current.transform.FindChild("Model").renderer.material.color = newColor;
                 anchor.RemoveBalloon(current);
                 freshAnchor.AddBalloon(current);
                 current.GetComponent<SpringJoint>().connectedBody = freshAnchor.rigidbody;

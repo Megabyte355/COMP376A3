@@ -12,10 +12,12 @@ public class Balloon : MonoBehaviour
     SpringJoint joint;
     Anchor anchor;
     BalloonSplitter splitter;
+    LineRenderer lineRenderer;
 
     bool customInstantiation = false;
     void Start()
     {
+        lineRenderer = GetComponent<LineRenderer>();
         wind = GameObject.FindGameObjectWithTag(Tags.Wind).GetComponent<WindEffect>();
         splitter = GameObject.FindGameObjectWithTag(Tags.BalloonSplitter).GetComponent<BalloonSplitter>();
         
@@ -42,6 +44,10 @@ public class Balloon : MonoBehaviour
     void Update()
     {
         rigidbody.AddForce(wind.GetAddedAcceleration(), ForceMode.Acceleration);
+
+        // Render line
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, joint.connectedBody.transform.position);
     }
 
     void OnCollisionEnter(Collision col)

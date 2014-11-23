@@ -13,6 +13,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 75: {fileID: 7500000}
   - 145: {fileID: 14500000}
+  - 120: {fileID: 12000000}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -142,8 +143,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcba4c0df3fe8ea40a91ce173b256c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRandomDistance: 3
-  minRandomDistance: 1
+  maxRandomDistance: 2
+  minRandomDistance: .5
+--- !u!120 &12000000
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1d375b9c1acbdf241b87d69bfa6aa378, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: .00999999978
+    endWidth: .00999999978
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4287072135
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4287072135
+  m_UseWorldSpace: 1
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
