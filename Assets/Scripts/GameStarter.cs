@@ -31,6 +31,7 @@ public class GameStarter : MonoBehaviour
             GameObject freshAnchorObject = Instantiate(anchorPrefab, position, Quaternion.identity) as GameObject;
             Anchor freshAnchor = freshAnchorObject.GetComponent<Anchor>();
             freshAnchor.InitializeBalloons(Random.Range(minBalloonsPerAnchor, maxBalloonsPerAnchor));
+            freshAnchor.SetRandomColor();
 
             anchorsInstantiated++;
         }

@@ -7,14 +7,8 @@ public class MouseLook : MonoBehaviour
     public float turnSpeed = 2f;
     public float moveSpeed = 4f;
 
-    
     float rotationX = 0;
     float rotationY = 0f;
-
-    void Awake()
-    {
-        //head = transform.Find("Head").transform;
-    }
 
     void Update()
     {
@@ -27,9 +21,7 @@ public class MouseLook : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
-        //rotationX = Mathf.Clamp(rotationX, -maxRangeMouseY, maxRangeMouseY);
 
-        // TODO Add code to update and use rotationX and rotationY
         rotationX += mouseX * turnSpeed;
         rotationY += mouseY * turnSpeed;
         rotationY = Mathf.Clamp(rotationY, -maxRangeMouseY, maxRangeMouseY);

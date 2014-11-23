@@ -8,4 +8,5 @@ public class Tags
     public static string Dart = "Dart";
     public static string Wind = "Wind";
     public static string BalloonSplitter = "BalloonSplitter";
+    public static string Score = "Score";
 }

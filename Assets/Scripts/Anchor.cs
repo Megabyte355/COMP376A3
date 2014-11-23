@@ -32,10 +32,6 @@ public class Anchor : MonoBehaviour
 
     void Update()
     {
-        //rigidbody.velocity = wind.GetAddedVelocity();
-        //rigidbody.AddForce(wind.GetAddedAcceleration(), ForceMode.Acceleration);
-        //transform.position = wind.GetPositionOffset() * Time.deltaTime;
-
         // "Cheat" for simulating wind for kinematic rigidbodies
         transform.position = Vector3.Lerp(transform.position, transform.position + wind.GetPositionOffset(), Time.deltaTime);
         transform.Translate(direction.normalized * speed * Time.deltaTime);
@@ -50,12 +46,18 @@ public class Anchor : MonoBehaviour
             float offsetZ = Random.Range(-maxDistance, maxDistance);
 
             Vector3 position = transform.position + new Vector3(offsetX, offsetY, offsetZ);
-            //Balloon b = Instantiate(balloonPrefab, position, Quaternion.identity) as Balloon;
-            //b.CustomInstantiate(this, minDistance, maxDistance);
-
             GameObject balloonObject = Instantiate(balloonPrefab, position, Quaternion.identity) as GameObject;
             Balloon b = balloonObject.GetComponent<Balloon>();
             b.CustomInstantiate(this, minDistance, Random.Range(minDistance, maxDistance));
+        }
+    }
+
+    public void SetRandomColor()
+    {
+        Color newColor = new Color(Random.value, Random.value, Random.value, 1f);
+        foreach (Balloon b in anchoredBalloons)
+        {
+            b.transform.FindChild("Model").renderer.material.color = newColor;
         }
     }
 
@@ -88,48 +90,11 @@ public class Anchor : MonoBehaviour
     {
         speed += speedIncrement;
     }
-    //public void SplitBalloons(Balloon targetBalloon, Vector3 collisionDirection)
-    //{
 
-    //    if (anchoredBalloons.Count == 0)
-    //    {
-    //        Destroy(this.gameObject);
-    //        return;
-    //    }
-        
-    //    // Destroy target balloon
-    //    anchoredBalloons.Remove(targetBalloon);
-    //    Destroy(targetBalloon.gameObject);
-
-    //    // Split balloons
-    //    GameObject freshAnchorObject = Instantiate(gameObject, transform.position, Quaternion.identity) as GameObject;
-    //    Anchor freshAnchor = freshAnchorObject.GetComponent<Anchor>();
-    //    freshAnchor.ClearBalloonList();
-
-    //    // Transfer half of the balloons
-    //    List<Balloon> transferList = new List<Balloon>(anchoredBalloons);
-    //    int half = anchoredBalloons.Count / 2;
-    //    for (int i = 0; i < half; i++)
-    //    {
-    //        Balloon current = transferList[i];
-    //        anchoredBalloons.Remove(current);
-    //        freshAnchor.AddBalloon(current);
-    //        current.GetComponent<SpringJoint>().connectedBody = freshAnchor.rigidbody;
-    //    }
-    //    transferList.Clear();
-
-    //    freshAnchor.direction = new Vector3(0, -1, 0);
-
-
-    //    if(freshAnchor.GetBalloonCount() == 0)
-    //    {
-    //        Destroy(freshAnchor.gameObject);
-    //    }
-
-
-    //    // TODO: Speed up
-    //    // TODO: Award player points
-    //}
+    public void SpeedUp(float amount)
+    {
+        speed += amount;
+    }
 
     public void Wrap(Vector3 translationVector, Space space)
     {

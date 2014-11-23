@@ -61,7 +61,18 @@ public class BalloonSplitter : MonoBehaviour
             // Speed up
             anchor.SpeedUp();
             freshAnchor.SpeedUp();
+
+            // Disable line renderer - It looks weird!
+            if(anchor.GetBalloonCount() <= 1)
+            {
+                anchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
+            }
+            if(freshAnchor.GetBalloonCount() <= 1)
+            {
+                freshAnchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
+            }
         }
+
         // TODO: Award player points
     }
 

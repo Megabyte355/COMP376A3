@@ -22,9 +22,6 @@ public class WindEffect : MonoBehaviour
     float time;
     Vector3 addedAcceleration;
 
-
-
-
     void Start()
     {
         if (randomizeDirection)
