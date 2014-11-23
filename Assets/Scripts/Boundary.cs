@@ -11,6 +11,7 @@ public class Boundary : MonoBehaviour
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
+        transform.FindChild("UpLabel").transform.position = new Vector3(0, boxCollider.size.y / 2, 0);
     }
 
     void OnTriggerExit(Collider obj)

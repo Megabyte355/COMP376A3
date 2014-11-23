@@ -57,5 +57,10 @@ public class Balloon : MonoBehaviour
             splitter.SplitBalloons(this, col.rigidbody.velocity);
             Destroy(col.gameObject);
         }
+        else if(col.gameObject.tag == Tags.Player)
+        {
+            splitter.SplitBalloons(this, col.rigidbody.velocity);
+            col.gameObject.GetComponent<Player>().Kill();
+        }
     }
 }
