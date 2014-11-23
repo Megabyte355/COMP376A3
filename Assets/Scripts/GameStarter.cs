@@ -14,7 +14,9 @@ public class GameStarter : MonoBehaviour
     GameObject anchorPrefab;
     [SerializeField]
     Boundary boundary;
-    void Start()
+
+    // Use Awake instead of Start to allow Progress script to count balloons
+    void Awake()
     {
         int anchorsInstantiated = 0;
         while (anchorsInstantiated < numberOfAnchors)

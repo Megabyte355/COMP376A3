@@ -8,6 +8,12 @@ public class BalloonSplitter : MonoBehaviour
     GameObject anchorPrefab;
     [SerializeField]
     float maxDegreeChange;
+    Progression progress;
+
+    void Start()
+    {
+        progress = GameObject.FindGameObjectWithTag(Tags.Progress).GetComponent<Progression>();
+    }
 
     public void SplitBalloons(Balloon targetBalloon, Vector3 collisionDirection)
     {
@@ -20,6 +26,7 @@ public class BalloonSplitter : MonoBehaviour
         {
             // Destroy last balloon
             Destroy(anchor.gameObject);
+            progress.hitBalloon();
         }
         else if(anchor.GetBalloonCount() == 1)
         {
@@ -31,6 +38,8 @@ public class BalloonSplitter : MonoBehaviour
 
             // Disable line renderer - It looks weird!
             anchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
+
+            progress.hitCluster();
         }
         else
         {
@@ -71,6 +80,8 @@ public class BalloonSplitter : MonoBehaviour
             {
                 freshAnchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
             }
+
+            progress.hitCluster();
         }
 
         // TODO: Award player points

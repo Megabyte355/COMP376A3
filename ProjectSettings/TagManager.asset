@@ -9,8 +9,8 @@ TagManager:
   - Dart
   - Boundary
   - BalloonSplitter
-  - Score
   - Balloon
+  - Progress
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

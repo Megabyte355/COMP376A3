@@ -19,17 +19,29 @@ public class Progression : MonoBehaviour
     float hotAirBalloonSpawn3;
     bool hotAirSpawn3 = false;
 
-    int poppedBalloons = 0;
-    int totalBalloons;
+    [SerializeField]
+    int score;
+    [SerializeField]
+    float progress;
+    [SerializeField]
+    int popClusterReward;
+    [SerializeField]
+    int popBalloonReward;
+    [SerializeField]
+    int popHotAirBalloonReward;
+
+    public int poppedBalloons = 0;
+    public int totalBalloons;
     
     void Start()
     {
         totalBalloons = GameObject.FindGameObjectsWithTag(Tags.Balloon).Length;
+        progress = 0f;
     }
 
     void Update()
     {
-        float progress = GetProgressPercent();
+        progress = (float)poppedBalloons / totalBalloons;
         if (!speedUp && progress >= speedUpThreshold)
         {
             speedUp = true;
@@ -55,8 +67,36 @@ public class Progression : MonoBehaviour
             // TODO: spawn Hot Air Balloon
         }
     }
+
     public float GetProgressPercent()
     {
-        return poppedBalloons / (float)totalBalloons;
+        return progress;
+    }
+
+    public void hitCluster()
+    {
+        AddPoints(popClusterReward);
+        poppedBalloons++;
+    }
+
+    public void hitBalloon()
+    {
+        AddPoints(popBalloonReward);
+        poppedBalloons++;
+    }
+
+    public void hitHotAirBalloon()
+    {
+        AddPoints(popHotAirBalloonReward);
+    }
+
+    public void AddPoints(int points)
+    {
+        score += points;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
