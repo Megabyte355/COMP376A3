@@ -487,6 +487,47 @@ MonoBehaviour:
   LivesUI: {fileID: 293150145}
   LivesUIShadow: {fileID: 1293292458}
   GameOverLabel: {fileID: 965058701}
+--- !u!1 &568825471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 568825472}
+  - 114: {fileID: 568825473}
+  m_Layer: 0
+  m_Name: HotAirSpawner
+  m_TagString: HotAirSpawner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &568825472
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 568825471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1082721402}
+  m_RootOrder: 2
+--- !u!114 &568825473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 568825471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7211be5d6bbf3f44f9cd2149a6e60c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotAirPrefab: {fileID: 100006, guid: 177d5d910c1ae6e449d01fcf6df7c1ce, type: 2}
+  speed: 0
 --- !u!1 &599220478
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +928,7 @@ Transform:
   m_Children:
   - {fileID: 153440616}
   - {fileID: 1518340186}
+  - {fileID: 568825472}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1181121398
@@ -1384,9 +1426,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0362993ed03489448a3abd968698d762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfAnchors: 5
-  minBalloonsPerAnchor: 20
-  maxBalloonsPerAnchor: 30
+  numberOfAnchors: 1
+  minBalloonsPerAnchor: 8
+  maxBalloonsPerAnchor: 8
   anchorPrefab: {fileID: 100002, guid: 96961a1a1c4a4294a82f310cca7fa673, type: 2}
   boundary: {fileID: 1520790351}
 --- !u!4 &1550110742

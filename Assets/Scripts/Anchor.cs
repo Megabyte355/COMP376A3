@@ -26,7 +26,7 @@ public class Anchor : MonoBehaviour
 
         if(randomizeDirection)
         {
-            direction = new Vector3(Random.Range(-100f, 100f), Random.Range(-100f, 100f), Random.Range(-100f, 100f)).normalized;
+            direction = new Vector3(Random.value, Random.value, Random.value).normalized;
         }
     }
 

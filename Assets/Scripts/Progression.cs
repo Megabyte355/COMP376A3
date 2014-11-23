@@ -32,9 +32,11 @@ public class Progression : MonoBehaviour
 
     public int poppedBalloons = 0;
     public int totalBalloons;
-    
+
+    HotAirSpawner hotAirSpawner;
     void Start()
     {
+        hotAirSpawner = GameObject.FindGameObjectWithTag(Tags.HotAirSpawner).GetComponent<HotAirSpawner>();
         totalBalloons = GameObject.FindGameObjectsWithTag(Tags.Balloon).Length;
         progress = 0f;
     }
@@ -53,18 +55,30 @@ public class Progression : MonoBehaviour
             }
 
             // TODO: Increase speed of Hot Air Balloon
+            GameObject[] hotAirs = GameObject.FindGameObjectsWithTag(Tags.HotAirBalloon);
+            foreach (GameObject h in hotAirs)
+            {
+                HotAirBalloon hotAirBalloon = h.GetComponent<HotAirBalloon>();
+                hotAirBalloon.SpeedUp(speedUpAmount);
+            }
         }
         if (!hotAirSpawn1 && progress >= hotAirBalloonSpawn1)
         {
             // TODO: spawn Hot Air Balloon
+            hotAirSpawn1 = true;
+            hotAirSpawner.Spawn();
         }
         if (!hotAirSpawn2 && progress >= hotAirBalloonSpawn2)
         {
             // TODO: spawn Hot Air Balloon
+            hotAirSpawn2 = true;
+            hotAirSpawner.Spawn();
         }
         if (!hotAirSpawn3 && progress >= hotAirBalloonSpawn3)
         {
             // TODO: spawn Hot Air Balloon
+            hotAirSpawn3 = true;
+            hotAirSpawner.Spawn();
         }
     }
 

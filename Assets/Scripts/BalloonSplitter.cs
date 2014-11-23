@@ -83,8 +83,6 @@ public class BalloonSplitter : MonoBehaviour
 
             progress.hitCluster();
         }
-
-        // TODO: Award player points
     }
 
     Quaternion GetRandomRotation(float maxDegree)
