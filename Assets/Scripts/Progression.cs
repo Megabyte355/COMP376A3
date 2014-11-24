@@ -32,6 +32,7 @@ public class Progression : MonoBehaviour
 
     public int poppedBalloons = 0;
     public int totalBalloons;
+    bool victory = false;
 
     HotAirSpawner hotAirSpawner;
     void Start()
@@ -81,6 +82,25 @@ public class Progression : MonoBehaviour
             hotAirSpawner.Spawn();
         }
 
+        if(!victory && poppedBalloons >= totalBalloons)
+        {
+            victory = true;
+            GameObject[] hotAirs = GameObject.FindGameObjectsWithTag(Tags.HotAirBalloon);
+            foreach (GameObject h in hotAirs)
+            {
+                Destroy(h);
+            }
+            GameObject[] waterBalloons = GameObject.FindGameObjectsWithTag(Tags.WaterBalloon);
+            foreach(GameObject wb in waterBalloons)
+            {
+                Destroy(wb);
+            }
+        }
+    }
+
+    public bool IsFinished()
+    {
+        return victory;
     }
 
     public float GetProgressPercent()

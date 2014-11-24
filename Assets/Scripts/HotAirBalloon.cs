@@ -14,7 +14,10 @@ public class HotAirBalloon : MonoBehaviour
 
     [SerializeField]
     GameObject waterBalloonPrefab;
-
+    [SerializeField]
+    float minThrowForce;
+    [SerializeField]
+    float maxThrowForce;
     [SerializeField]
     float maxDegreeDeviation;
 
@@ -33,17 +36,15 @@ public class HotAirBalloon : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0f)
         {
-            // Throw water balloon at player
+            // Throw water balloon towards player
             Vector3 hotAirToPlayer = (playerTransform.position - transform.position).normalized;
 
             Vector3 rotationAxis = new Vector3(Random.value, Random.value, Random.value).normalized;
-            float degree = Random.Range(0f, maxDegreeDeviation);
-            Vector3 shootDirection = Quaternion.AngleAxis(degree, rotationAxis) * hotAirToPlayer;
+            float degreeDeviation = Random.Range(0f, maxDegreeDeviation);
+            Vector3 shootDirection = Quaternion.AngleAxis(degreeDeviation, rotationAxis) * hotAirToPlayer;
 
             GameObject waterBalloonObject = Instantiate(waterBalloonPrefab, transform.position, Quaternion.identity) as GameObject;
-            // TODO: Decide if we should keep this like this
-            //WaterBalloon wb = waterBalloonObject.GetComponent<WaterBalloon>();
-            waterBalloonObject.rigidbody.AddForce(shootDirection * 500f);
+            waterBalloonObject.rigidbody.AddForce(shootDirection * Random.Range(minThrowForce, maxThrowForce));
             timer = throwCooldown;
         }
     }

@@ -18,6 +18,8 @@ public class Hud : MonoBehaviour
 
     [SerializeField]
     GameObject GameOverLabel;
+    [SerializeField]
+    GameObject VictoryLabel;
 
     Progression progress;
     Player player;
@@ -53,6 +55,10 @@ public class Hud : MonoBehaviour
             cacheProgress = displayed;
             ProgressUI.text = "Progress: " + cacheProgress + "%";
             ProgressUIShadow.text = "Progress: " + cacheProgress + "%";
+        }
+        if(progress.IsFinished())
+        {
+            VictoryLabel.SetActive(true);
         }
     }
 

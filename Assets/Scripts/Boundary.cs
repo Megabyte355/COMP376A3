@@ -30,17 +30,16 @@ public class Boundary : MonoBehaviour
     void Wrap(GameObject obj)
     {
         Vector3 translationVector = 2 * (boxCollider.center - obj.transform.position);
-
+        Vector3 wrapPosition = obj.transform.position + translationVector;
         if(obj.tag == Tags.Anchor)
         {
             obj.GetComponent<Anchor>().Wrap(translationVector, Space.World);
         }
-        // TODO
-        //if (obj.tag == Tags.WaterBalloon)
-        //{
-        //    obj.rigidbody.velocity =
-        //    obj.transform.Translate(translationVector, Space.World);
-        //}
+        else if (obj.tag == Tags.Dart)
+        {
+            Dart d = obj.gameObject.GetComponent<Dart>();
+            d.DelayedWrap(wrapPosition);
+        }
         else
         {
             obj.transform.Translate(translationVector, Space.World);
