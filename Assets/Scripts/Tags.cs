@@ -6,6 +6,7 @@ public class Tags
     public static string Player = "Player";
     public static string Anchor = "Anchor";
     public static string Balloon = "Balloon";
+    public static string WaterBalloon = "WaterBalloon";
     public static string Boundary = "Boundary";
     public static string Dart = "Dart";
     public static string Wind = "Wind";

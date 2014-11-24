@@ -5,15 +5,11 @@ public class HotAirSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject hotAirPrefab;
-    [SerializeField]
-    float speed;
 
     Boundary boundary;
-    Vector3 direction;
     void Start()
     {
         boundary = GameObject.FindGameObjectWithTag(Tags.Boundary).GetComponent<Boundary>();
-        direction = new Vector3(Random.value, Random.value, Random.value).normalized;
     }
 
     public void Spawn()
@@ -22,9 +18,9 @@ public class HotAirSpawner : MonoBehaviour
         Vector3 center = boundaryCollider.center;
         Vector3 size = boundaryCollider.size;
 
-        float randomX = Random.Range(-1f, 1f) * size.x / 2;
-        float randomY = Random.value * size.y / 2;
-        float randomZ = Random.Range(-1f, 1f) * size.z / 2;
+        float randomX = Random.Range(-1f, 1f) * size.x / 2 * 0.80f;
+        float randomY = Random.value * size.y / 2 * 0.80f;
+        float randomZ = Random.Range(-1f, 1f) * size.z / 2 * 0.80f;
         Vector3 randomSpot = new Vector3(randomX, randomY, randomZ) + center + boundaryCollider.transform.position;
         Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
 

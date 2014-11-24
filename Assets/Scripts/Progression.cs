@@ -80,6 +80,7 @@ public class Progression : MonoBehaviour
             hotAirSpawn3 = true;
             hotAirSpawner.Spawn();
         }
+
     }
 
     public float GetProgressPercent()
@@ -87,19 +88,24 @@ public class Progression : MonoBehaviour
         return progress;
     }
 
-    public void hitCluster()
+    public void HitCluster()
     {
         AddPoints(popClusterReward);
         poppedBalloons++;
     }
 
-    public void hitBalloon()
+    public void HitBalloon()
     {
         AddPoints(popBalloonReward);
         poppedBalloons++;
     }
 
-    public void hitHotAirBalloon()
+    public void HitWaterBalloon()
+    {
+        AddPoints(popBalloonReward);
+    }
+
+    public void HitHotAirBalloon()
     {
         AddPoints(popHotAirBalloonReward);
     }

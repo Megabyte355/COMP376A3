@@ -26,7 +26,7 @@ public class BalloonSplitter : MonoBehaviour
         {
             // Destroy last balloon
             Destroy(anchor.gameObject);
-            progress.hitBalloon();
+            progress.HitBalloon();
         }
         else if(anchor.GetBalloonCount() == 1)
         {
@@ -39,7 +39,7 @@ public class BalloonSplitter : MonoBehaviour
             // Disable line renderer - It looks weird!
             anchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
 
-            progress.hitCluster();
+            progress.HitCluster();
         }
         else
         {
@@ -81,7 +81,7 @@ public class BalloonSplitter : MonoBehaviour
                 freshAnchor.GetAnchoredBalloons()[0].GetComponent<LineRenderer>().enabled = false;
             }
 
-            progress.hitCluster();
+            progress.HitCluster();
         }
     }
 
