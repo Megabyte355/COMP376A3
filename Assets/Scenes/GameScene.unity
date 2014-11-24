@@ -2062,11 +2062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da65a7a71a345064d95ad1a7a99c0c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfBalloons: 1
+  numberOfBalloons: 75
   speed: 4
   anchorPrefab: {fileID: 100002, guid: 96961a1a1c4a4294a82f310cca7fa673, type: 2}
   boundary: {fileID: 1520790351}
-  timeBeforeStaticStorm: 8
+  timeBeforeStaticStorm: 60
 --- !u!4 &1530200585
 Transform:
   m_ObjectHideFlags: 0
@@ -2107,8 +2107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAnchors: 1
-  minBalloonsPerAnchor: 2
-  maxBalloonsPerAnchor: 2
+  minBalloonsPerAnchor: 5
+  maxBalloonsPerAnchor: 6
   anchorPrefab: {fileID: 100002, guid: 96961a1a1c4a4294a82f310cca7fa673, type: 2}
   boundary: {fileID: 1520790351}
 --- !u!4 &1550110742
