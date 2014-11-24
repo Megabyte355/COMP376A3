@@ -415,7 +415,9 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   throwCooldown: 5
   waterBalloonPrefab: {fileID: 100000, guid: 21bf32f7666736a4b835423d898ecdfd, type: 2}
-  maxDegreeDeviation: 20
+  minThrowForce: 300
+  maxThrowForce: 500
+  maxDegreeDeviation: 15
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
