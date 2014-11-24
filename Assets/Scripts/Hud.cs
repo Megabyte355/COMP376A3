@@ -50,13 +50,15 @@ public class Hud : MonoBehaviour
     void UpdateProgressUI(float percent)
     {
         int displayed = (int)Mathf.Round(percent * 100);
-        if(displayed != cacheProgress)
+        if (displayed != cacheProgress)
         {
             cacheProgress = displayed;
             ProgressUI.text = "Progress: " + cacheProgress + "%";
             ProgressUIShadow.text = "Progress: " + cacheProgress + "%";
         }
-        if(progress.IsFinished())
+
+        // Prevent Victory and Game Over to show up at same time
+        if (progress.IsFinished() && !GameOverLabel.activeSelf)
         {
             VictoryLabel.SetActive(true);
         }
@@ -64,7 +66,7 @@ public class Hud : MonoBehaviour
 
     void UpdateScoreUI(int score)
     {
-        if(cacheScore != score)
+        if (cacheScore != score)
         {
             cacheScore = score;
             ScoreUI.text = "Score: " + cacheScore;
@@ -80,7 +82,7 @@ public class Hud : MonoBehaviour
             LivesUI.text = "Lives: " + cacheLives;
             LivesUIShadow.text = "Lives: " + cacheLives;
         }
-        if(lives < 0 && !GameOverLabel.activeSelf)
+        if (lives < 0 && !GameOverLabel.activeSelf)
         {
             GameOverLabel.SetActive(true);
             LivesUI.gameObject.SetActive(false);

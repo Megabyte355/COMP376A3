@@ -96,6 +96,11 @@ public class Anchor : MonoBehaviour
         speed += amount;
     }
 
+    public void SetSpeed(float spd)
+    {
+        speed = spd;
+    }
+
     public void Wrap(Vector3 translationVector, Space space)
     {
         foreach(Balloon b in anchoredBalloons)

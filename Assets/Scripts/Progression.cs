@@ -33,11 +33,15 @@ public class Progression : MonoBehaviour
     public int poppedBalloons = 0;
     public int totalBalloons;
     bool victory = false;
+    bool bossSpawn = false;
 
+    [SerializeField]
     HotAirSpawner hotAirSpawner;
+    [SerializeField]
+    BossSpawner bossSpawner;
+
     void Start()
     {
-        hotAirSpawner = GameObject.FindGameObjectWithTag(Tags.HotAirSpawner).GetComponent<HotAirSpawner>();
         totalBalloons = GameObject.FindGameObjectsWithTag(Tags.Balloon).Length;
         progress = 0f;
     }
@@ -82,19 +86,20 @@ public class Progression : MonoBehaviour
             hotAirSpawner.Spawn();
         }
 
-        if(!victory && poppedBalloons >= totalBalloons)
+        if(!bossSpawn && poppedBalloons >= totalBalloons)
+        {
+            bossSpawn = true;
+            DestroyAllBalloons();
+
+            // Spawn boss cluster and reset progress
+            bossSpawner.gameObject.SetActive(true);
+            poppedBalloons = 0;
+            totalBalloons = GameObject.FindGameObjectsWithTag(Tags.Balloon).Length;
+        }
+        else if(!victory && poppedBalloons >= totalBalloons )
         {
             victory = true;
-            GameObject[] hotAirs = GameObject.FindGameObjectsWithTag(Tags.HotAirBalloon);
-            foreach (GameObject h in hotAirs)
-            {
-                Destroy(h);
-            }
-            GameObject[] waterBalloons = GameObject.FindGameObjectsWithTag(Tags.WaterBalloon);
-            foreach(GameObject wb in waterBalloons)
-            {
-                Destroy(wb);
-            }
+            DestroyAllBalloons();
         }
     }
 
@@ -138,5 +143,19 @@ public class Progression : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    void DestroyAllBalloons()
+    {
+        GameObject[] hotAirs = GameObject.FindGameObjectsWithTag(Tags.HotAirBalloon);
+        foreach (GameObject h in hotAirs)
+        {
+            Destroy(h);
+        }
+        GameObject[] waterBalloons = GameObject.FindGameObjectsWithTag(Tags.WaterBalloon);
+        foreach (GameObject wb in waterBalloons)
+        {
+            Destroy(wb);
+        }
     }
 }

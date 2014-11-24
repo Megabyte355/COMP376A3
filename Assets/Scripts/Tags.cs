@@ -16,4 +16,5 @@ public class Tags
     public static string Respawner = "Respawner";
     public static string HotAirSpawner = "HotAirSpawner";
     public static string HotAirBalloon = "HotAirBalloon";
+    public static string BossSpawner = "BossSpawner";
 }
