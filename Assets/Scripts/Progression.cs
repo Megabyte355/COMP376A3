@@ -93,6 +93,7 @@ public class Progression : MonoBehaviour
 
             // Spawn boss cluster and reset progress
             bossSpawner.gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag(Tags.Hud).GetComponent<Hud>().ShowBossMessage();
             poppedBalloons = 0;
             totalBalloons = GameObject.FindGameObjectsWithTag(Tags.Balloon).Length;
         }

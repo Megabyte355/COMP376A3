@@ -20,6 +20,8 @@ public class Hud : MonoBehaviour
     GameObject GameOverLabel;
     [SerializeField]
     GameObject VictoryLabel;
+    [SerializeField]
+    GameObject BossLabel;
 
     Progression progress;
     Player player;
@@ -28,6 +30,10 @@ public class Hud : MonoBehaviour
     int cacheProgress = -1;
     int cacheLives = -1;
     int cacheScore = -1;
+
+    bool bossMessageShown = false;
+    float bossMessageDuration = 3f;
+    float bossMessageTimer;
 
     void Start()
     {
@@ -45,6 +51,16 @@ public class Hud : MonoBehaviour
         UpdateProgressUI(progress.GetProgressPercent());
         UpdateScoreUI(progress.GetScore());
         UpdateLivesUI(player.GetLives());
+
+        if(bossMessageShown)
+        {
+            bossMessageTimer -= Time.deltaTime;
+            if(bossMessageTimer <= 0)
+            {
+                bossMessageShown = false;
+                BossLabel.SetActive(false);
+            }
+        }
     }
 
     void UpdateProgressUI(float percent)
@@ -87,5 +103,12 @@ public class Hud : MonoBehaviour
             GameOverLabel.SetActive(true);
             LivesUI.gameObject.SetActive(false);
         }
+    }
+
+    public void ShowBossMessage()
+    {
+        bossMessageShown = true;
+        BossLabel.SetActive(true);
+        bossMessageTimer = bossMessageDuration;
     }
 }
