@@ -101,12 +101,19 @@ public class Progression : MonoBehaviour
         {
             victory = true;
             DestroyAllBalloons();
+            GameObject.FindGameObjectWithTag(Tags.Hud).GetComponent<Hud>().ShowStaticStormCountdown(false);
+            bossSpawner.gameObject.SetActive(false);
         }
     }
 
     public bool IsFinished()
     {
         return victory;
+    }
+
+    public bool IsBossSpawned()
+    {
+        return bossSpawn;
     }
 
     public float GetProgressPercent()

@@ -21,10 +21,12 @@ public class Player : MonoBehaviour
     Vector3 respawnPosition;
     [SerializeField]
     int lives;
+    bool isAlive;
 
     void Start()
     {
         lives--;
+        isAlive = true;
         mouse = GetComponent<MouseLook>();
         dartGun = GetComponent<DartGun>();
         boxCollider = GetComponent<BoxCollider>();
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
         if(!invincible)
         {
             lives--;
+            isAlive = false;
             mouse.enabled = false;
             dartGun.enabled = false;
             boxCollider.enabled = false;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
     {
         if(lives >= 0)
         {
+            isAlive = true;
             mouse.enabled = true;
             dartGun.enabled = true;
             boxCollider.enabled = true;
@@ -95,5 +99,10 @@ public class Player : MonoBehaviour
     public int GetLives()
     {
         return lives;
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 }

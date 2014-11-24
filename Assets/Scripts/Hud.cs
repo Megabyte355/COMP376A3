@@ -15,6 +15,10 @@ public class Hud : MonoBehaviour
     TextMesh LivesUI;
     [SerializeField]
     TextMesh LivesUIShadow;
+    [SerializeField]
+    TextMesh StaticStormUI;
+    [SerializeField]
+    TextMesh StaticStormUIShadow;
 
     [SerializeField]
     GameObject GameOverLabel;
@@ -22,14 +26,24 @@ public class Hud : MonoBehaviour
     GameObject VictoryLabel;
     [SerializeField]
     GameObject BossLabel;
+    
+
+    [SerializeField]
+    GameObject WhiteScreen;
+    bool flash = false;
+    float flashDuration = 0.5f;
+    float flashTimer;
 
     Progression progress;
     Player player;
+    [SerializeField]
+    BossSpawner bossSpawner;
 
     // Cached values
     int cacheProgress = -1;
     int cacheLives = -1;
     int cacheScore = -1;
+    int cachedStaticStorm = -1;
 
     bool bossMessageShown = false;
     float bossMessageDuration = 3f;
@@ -51,7 +65,12 @@ public class Hud : MonoBehaviour
         UpdateProgressUI(progress.GetProgressPercent());
         UpdateScoreUI(progress.GetScore());
         UpdateLivesUI(player.GetLives());
-
+        
+        if (StaticStormUI.gameObject.activeSelf)
+        {
+            UpdateStaticStormUI();
+        }
+        
         if(bossMessageShown)
         {
             bossMessageTimer -= Time.deltaTime;
@@ -60,6 +79,43 @@ public class Hud : MonoBehaviour
                 bossMessageShown = false;
                 BossLabel.SetActive(false);
             }
+        }
+
+        if(flash)
+        {
+            flashTimer += Time.deltaTime;
+
+            if(flashTimer < flashDuration / 4f)
+            {
+                WhiteScreen.SetActive(true);
+            }
+            else if (flashTimer < flashDuration / 2f)
+            {
+                WhiteScreen.SetActive(false);
+            }
+            else if (flashTimer < flashDuration * (3f / 4f))
+            {
+                WhiteScreen.SetActive(true);
+            }
+            else
+            {
+                WhiteScreen.SetActive(false);
+                flash = false;
+            }
+        }
+
+        // Turn static storm counter on/off depending on situation (a little hacked)
+        if(player.IsAlive() && progress.IsBossSpawned() && !StaticStormCountdownIsOn())
+        {
+            ShowStaticStormCountdown(true);
+        }
+        else if (!player.IsAlive() && progress.IsBossSpawned() && StaticStormCountdownIsOn())
+        {
+            ShowStaticStormCountdown(false);
+        }
+        if(StaticStormCountdownIsOn() && progress.IsFinished())
+        {
+            ShowStaticStormCountdown(false);
         }
     }
 
@@ -105,10 +161,39 @@ public class Hud : MonoBehaviour
         }
     }
 
+    void UpdateStaticStormUI()
+    {
+        int timeLeft = (int)bossSpawner.GetTimer();
+        if(cachedStaticStorm != timeLeft)
+        {
+            cachedStaticStorm = timeLeft;
+            StaticStormUI.text = "Static Storm in... " + timeLeft;
+            StaticStormUIShadow.text = "Static Storm in... " + timeLeft;
+        }
+        
+    }
+
     public void ShowBossMessage()
     {
         bossMessageShown = true;
         BossLabel.SetActive(true);
         bossMessageTimer = bossMessageDuration;
+    }
+
+    public void CastStaticStormEffects()
+    {
+        flash = true;
+        flashTimer = 0;
+    }
+
+    public void ShowStaticStormCountdown(bool status)
+    {
+        StaticStormUI.gameObject.SetActive(status);
+        StaticStormUIShadow.gameObject.SetActive(status);
+    }
+
+    bool StaticStormCountdownIsOn()
+    {
+        return StaticStormUI.gameObject.activeSelf && StaticStormUIShadow.gameObject.activeSelf;
     }
 }

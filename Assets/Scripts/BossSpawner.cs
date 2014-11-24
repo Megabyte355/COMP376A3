@@ -13,6 +13,18 @@ public class BossSpawner : MonoBehaviour
     [SerializeField]
     Boundary boundary;
 
+    [SerializeField]
+    float timeBeforeStaticStorm;
+    float timer;
+    Player player;
+
+    Hud hud;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
+        hud = GameObject.FindGameObjectWithTag(Tags.Hud).GetComponent<Hud>();
+        timer = timeBeforeStaticStorm;
+    }
     // Use Awake instead of Start to allow Progress script to count balloons
     void Awake()
     {
@@ -30,5 +42,24 @@ public class BossSpawner : MonoBehaviour
         freshAnchor.InitializeBalloons(numberOfBalloons);
         freshAnchor.SetSpeed(speed);
         freshAnchor.SetRandomColor();
+    }
+
+    void Update()
+    {
+        if(player.IsAlive())
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                hud.CastStaticStormEffects();
+                GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>().Kill();
+                timer = timeBeforeStaticStorm;
+            }
+        }
+    }
+
+    public float GetTimer()
+    {
+        return timer;
     }
 }
