@@ -5,7 +5,9 @@ public class DartGun : MonoBehaviour
 {
     [SerializeField]
     Dart dartPrefab;
-    
+    [SerializeField]
+    AudioSource dartSound;
+
     [SerializeField]
     float dartCooldown = 1.0f;
 
@@ -46,7 +48,7 @@ public class DartGun : MonoBehaviour
 
             Vector3 dartSpawn = transform.position + transform.forward * dartSpawnOffset;
             Instantiate(dartPrefab, dartSpawn, transform.rotation);
-            //blowSound.Play();
+            dartSound.Play();
         }
     }
 }

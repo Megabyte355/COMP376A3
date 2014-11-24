@@ -59,7 +59,6 @@ public class Progression : MonoBehaviour
                 anchor.SpeedUp(speedUpAmount);
             }
 
-            // TODO: Increase speed of Hot Air Balloon
             GameObject[] hotAirs = GameObject.FindGameObjectsWithTag(Tags.HotAirBalloon);
             foreach (GameObject h in hotAirs)
             {
@@ -69,19 +68,16 @@ public class Progression : MonoBehaviour
         }
         if (!hotAirSpawn1 && progress >= hotAirBalloonSpawn1)
         {
-            // TODO: spawn Hot Air Balloon
             hotAirSpawn1 = true;
             hotAirSpawner.Spawn();
         }
         if (!hotAirSpawn2 && progress >= hotAirBalloonSpawn2)
         {
-            // TODO: spawn Hot Air Balloon
             hotAirSpawn2 = true;
             hotAirSpawner.Spawn();
         }
         if (!hotAirSpawn3 && progress >= hotAirBalloonSpawn3)
         {
-            // TODO: spawn Hot Air Balloon
             hotAirSpawn3 = true;
             hotAirSpawner.Spawn();
         }

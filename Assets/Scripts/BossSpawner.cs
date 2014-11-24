@@ -12,6 +12,8 @@ public class BossSpawner : MonoBehaviour
     GameObject anchorPrefab;
     [SerializeField]
     Boundary boundary;
+    [SerializeField]
+    AudioSource thunderSound;
 
     [SerializeField]
     float timeBeforeStaticStorm;
@@ -52,6 +54,7 @@ public class BossSpawner : MonoBehaviour
             if (timer <= 0)
             {
                 hud.CastStaticStormEffects();
+                thunderSound.Play();
                 GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>().Kill();
                 timer = timeBeforeStaticStorm;
             }

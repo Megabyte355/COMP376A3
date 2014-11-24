@@ -7,6 +7,7 @@ public class Balloon : MonoBehaviour
     float maxRandomDistance;
     [SerializeField]
     float minRandomDistance;
+    AudioSource balloonPopSound;
 
     WindEffect wind;
     SpringJoint joint;
@@ -28,6 +29,9 @@ public class Balloon : MonoBehaviour
             anchor = joint.connectedBody.GetComponent<Anchor>();
             anchor.AddBalloon(this);
         }
+
+        GameObject sounds = GameObject.FindGameObjectWithTag(Tags.Sounds) as GameObject;
+        balloonPopSound = sounds.transform.FindChild("BalloonPop").GetComponent<AudioSource>();
     }
 
     public void CustomInstantiate(Anchor a, float minDistance, float maxDistance)
@@ -56,11 +60,13 @@ public class Balloon : MonoBehaviour
         {
             splitter.SplitBalloons(this, col.rigidbody.velocity);
             Destroy(col.gameObject);
+            balloonPopSound.Play();
         }
         else if(col.gameObject.tag == Tags.Player)
         {
             splitter.SplitBalloons(this, col.rigidbody.velocity);
             col.gameObject.GetComponent<Player>().Kill();
+            balloonPopSound.Play();
         }
     }
 }

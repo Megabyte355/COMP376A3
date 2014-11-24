@@ -68,10 +68,6 @@ public class Player : MonoBehaviour
             rigidbody.angularVelocity = Vector3.zero;
             rigidbody.isKinematic = true;
         }
-        else
-        {
-            // TODO: Show Game Over
-        }
     }
 
     void Update()

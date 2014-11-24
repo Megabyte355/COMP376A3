@@ -23,12 +23,16 @@ public class HotAirBalloon : MonoBehaviour
 
     Progression progress;
     Transform playerTransform;
+    AudioSource balloonPopSound;
 
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Transform>();
         progress = GameObject.FindGameObjectWithTag(Tags.Progress).GetComponent<Progression>();
         timer = throwCooldown;
+
+        GameObject sounds = GameObject.FindGameObjectWithTag(Tags.Sounds) as GameObject;
+        balloonPopSound = sounds.transform.FindChild("WaterBalloonPop").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -84,10 +88,12 @@ public class HotAirBalloon : MonoBehaviour
             progress.HitHotAirBalloon();
             Destroy(col.gameObject);
             Destroy(this.gameObject);
+            balloonPopSound.Play();
         }
         else if (col.gameObject.tag == Tags.Player)
         {
             col.gameObject.GetComponent<Player>().Kill();
+            balloonPopSound.Play();
         }
     }
 }
